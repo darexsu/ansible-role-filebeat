@@ -1,0 +1,40 @@
+---
+- name: merge dictionaries
+  block:
+    - include_vars:
+        file: ../../darexsu.filebeat/defaults/main.yml
+        name: filebeat_default_vars
+
+    - name: merge default and new dictionaries
+      set_fact:
+        "{{ item.key }}": "{{ filebeat_default_vars[item.key] | combine(merge[item.key], recursive=True)}}"
+      when: filebeat_default_vars[item.key] is defined
+      with_dict: "{{ merge }}"
+
+    - name: combine defaults vars with merge dictionary
+      set_fact:
+        merge: "{{ filebeat_default_vars | combine(merge, recursive=True)}}"
+  when: merge is defined
+
+- name: filebeat role is disabled
+  meta: end_play
+  when: not filebeat.enabled
+
+- name: "-> 01_Filebeat_install_{{ ansible_os_family }}.yml"
+  include_tasks: "./tasks/01_Filebeat_install_{{ ansible_os_family }}.yml"
+  when: filebeat_install.enabled
+
+- name: gather the package facts
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: "-> 02_Filebeat.yml"
+  include_tasks: "./tasks/02_Filebeat.yml"
+  when: ("filebeat") in ansible_facts.packages and filebeat_yml.enabled
+
+- name: "ensure filebeat is {{ filebeat['service']['state'] }}"
+  ansible.builtin.service:
+    name: filebeat
+    state: "{{ filebeat['service']['state'] }}"
+    enabled: "{{ filebeat['service']['enabled'] }}"
+  when: ("filebeat") in ansible_facts.packages

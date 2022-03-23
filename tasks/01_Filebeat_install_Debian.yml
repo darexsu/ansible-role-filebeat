@@ -1,0 +1,31 @@
+---
+- name: ensure dependencies are installed.
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items: "{{ filebeat_const[ansible_os_family]['dependencies'] }}"
+
+- name: add elastic.co repo
+  block:
+    - name: add elastic.co gpg key
+      ansible.builtin.apt_key:
+        url: "{{ filebeat_const[ansible_os_family]['elastic']['gpg'] }}"
+        state: present
+
+    - name: add elastic.co repo
+      ansible.builtin.apt_repository:
+        repo: "{{ filebeat_const[ansible_os_family]['elastic']['repo'] }}"
+        state: present
+  when: filebeat.repo == "elastic"
+
+- name: install filebeat
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items: "{{ filebeat_install['packages'] }}"
+
+- name: force systemd to reread configs
+  ansible.builtin.systemd:
+    daemon_reload: true
