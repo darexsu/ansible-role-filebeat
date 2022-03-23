@@ -23,7 +23,7 @@ filebeat_yml:
     # ============================== Filebeat inputs ===============================
     filebeat.inputs:
       - type: filestream
-        enabled: false
+        enabled: true
         paths:
           - /var/log/*.log
     # ============================== Filebeat modules ==============================

@@ -74,7 +74,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
           # ============================== Filebeat inputs ===============================
           filebeat.inputs:
             - type: filestream
-              enabled: false
+              enabled: true
               paths:
                 - /var/log/*.log
           # ============================== Filebeat modules ==============================
@@ -162,7 +162,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
           # ============================== Filebeat inputs ===============================
           filebeat.inputs:
             - type: filestream
-              enabled: false
+              enabled: true
               paths:
                 - /var/log/*.log
           # ============================== Filebeat modules ==============================
@@ -241,7 +241,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
         # ============================== Filebeat inputs ===============================
         filebeat.inputs:
           - type: filestream
-            enabled: false
+            enabled: true
             paths:
               - /var/log/*.log
         # ============================== Filebeat modules ==============================
@@ -341,7 +341,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
         # ============================== Filebeat inputs ===============================
         filebeat.inputs:
           - type: filestream
-            enabled: false
+            enabled: true
             paths:
               - /var/log/*.log
         # ============================== Filebeat modules ==============================
