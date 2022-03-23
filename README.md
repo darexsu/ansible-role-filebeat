@@ -123,7 +123,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
         name: darexsu.filebeat
 
 ```
-##### Install: filebeat (merge version)
+##### Install: Filebeat (merge version)
 ```yaml
 ---
 - hosts: all
@@ -144,7 +144,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
         name: darexsu.filebeat
 
 ```
-##### Configure: filebeat (merge version)
+##### Configure: Filebeat (merge version)
 ```yaml
 ---
 - hosts: all
@@ -290,7 +290,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
         name: darexsu.filebeat
 
 ```
-##### Install: filebeat (full version)
+##### Install: Filebeat (full version)
 ```yaml
 ---
 - hosts: all
@@ -316,7 +316,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
         name: darexsu.filebeat
 
 ```
-##### Configure: filebeat (full version)
+##### Configure: Filebeat (full version)
 ```yaml
 ---
 - hosts: all
