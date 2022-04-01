@@ -23,7 +23,6 @@
       # Filebeat -> install
       filebeat_install:
         enabled: true
-        packages: ["filebeat"]
 
       # Filebeat -> config -> filebeat.yml
       filebeat_yml:

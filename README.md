@@ -230,7 +230,7 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
     # Filebeat -> install
     filebeat_install:
       enabled: true
-      packages: ["filebeat"]
+      
     # Filebeat -> config -> filebeat.yml
     filebeat_yml:
       enabled: true
@@ -308,7 +308,6 @@ Your vars [host_vars]  -->  default vars [current role] --> default vars [includ
     # Filebeat -> install
     filebeat_install:
       enabled: true
-      packages: ["filebeat"]
 
   tasks:
     - name: role darexsu filebeat
